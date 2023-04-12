@@ -9,7 +9,7 @@
 
 void UI::startGame() {
     using std::cout;
-    int timesPlayed;
+    int timesPlayed = 0;
     std::string playerName;
     try {
         timesPlayed = Utils::deserializeInt("timesPlayed.txt");
@@ -22,6 +22,8 @@ void UI::startGame() {
                 "But on the bright side, you're now fully healed up.\n";
 
     } catch (const std::exception &ex) {
+        timesPlayed++;
+        Utils::serializeInt(timesPlayed, "timesPlayed.txt");
         cout << "Welcome, brave warrior, to the world of mediocre text-based adventure games.\n"
                 "Please enter your name: ";
         std::cin >> playerName;
